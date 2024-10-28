@@ -17,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Text to Image ai",
-  description: "Powered by ",
+  title: "PromtIt - AI Image Generator",
+  description: "Powered by Pollinations.ai",
 };
 
 export default function RootLayout({
