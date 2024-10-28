@@ -5,6 +5,8 @@ import axios from "axios";
 import { Button, Input, Space, Spin, Alert } from "antd";
 import { DownloadOutlined, SendOutlined } from "@ant-design/icons";
 
+const profanityList = process.env.NEXT_PUBLIC_PROFANITY_LIST?.split(",") || [];
+
 const PromtIt: React.FC = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [inputText, setInputText] = useState(
@@ -21,8 +23,19 @@ const PromtIt: React.FC = () => {
     link.click();
   };
 
+  const checkForProfanity = (text: string) => {
+    return profanityList.some((word) =>
+      text.toLowerCase().includes(word.trim().toLowerCase())
+    );
+  };
+
   const handleClick = async () => {
     if (inputText) {
+      if (checkForProfanity(inputText)) {
+        setError("Inappropriate language detected. Please modify your prompt.");
+        return;
+      }
+
       setLoading(true);
       setError("");
       try {
