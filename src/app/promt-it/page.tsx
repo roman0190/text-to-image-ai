@@ -46,7 +46,7 @@ const PromtIt: React.FC = () => {
 
   return (
     <div className="container mx-auto flex flex-col items-center justify-center z-50 px-[5%]">
-      <div className="relative border lg:min-h-[720px] min-h-[420px] max-h-[720px] w-full border-gray-400 mt-20 flex flex-col justify-center items-center overflow-hidden">
+      <div className="relative border lg:min-h-[720px] min-h-[420px] max-h-[720px] w-full border-teal-200 rounded-lg mt-20 flex flex-col justify-center items-center overflow-hidden bg-slate-50/10">
         {loading ? (
           <Spin size="large" />
         ) : imageUrl ? (
@@ -80,6 +80,11 @@ const PromtIt: React.FC = () => {
           className="rounded-xl w-full"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleClick();
+            }
+          }}
           suffix={
             <Space>
               <Button
