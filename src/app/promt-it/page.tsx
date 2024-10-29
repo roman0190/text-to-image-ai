@@ -33,6 +33,7 @@ const PromtIt: React.FC = () => {
     if (inputText) {
       if (checkForProfanity(inputText)) {
         setError("Inappropriate language detected. Please modify your prompt.");
+        alert("Inappropriate language detected. Please modify your prompt.");
         return;
       }
 
@@ -73,9 +74,9 @@ const PromtIt: React.FC = () => {
         ) : (
           <p className="text-gray-500">No image to display</p>
         )}
-        {error && (
-          <Alert message={error} type="error" className="mt-4" showIcon />
-        )}
+        {/* {error && ( */}
+          {/* // <Alert message={error} type="error" className="mt-4" showIcon /> */}
+        {/* // )} */}
         <Button
           className="absolute right-[1%] bottom-[2%]"
           type="default"
