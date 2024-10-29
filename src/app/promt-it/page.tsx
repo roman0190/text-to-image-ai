@@ -33,7 +33,7 @@ const PromtIt: React.FC = () => {
     if (inputText) {
       if (checkForProfanity(inputText)) {
         setError("Inappropriate language detected. Please modify your prompt.");
-        alert("Inappropriate language detected. Please modify your prompt.");
+        // alert("Inappropriate language detected. Please modify your prompt.");
         return;
       }
 
@@ -64,19 +64,38 @@ const PromtIt: React.FC = () => {
         {loading ? (
           <Spin size="large" />
         ) : imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt="Generated Image"
-            width={1920}
-            height={1080}
-            className="object-contain w-full max-h-[720px]"
-          />
+          <div>
+            <div>
+              {error && (
+                <Alert
+                  message={error}
+                  type="error"
+                  className="mt-4 absolute right-[28rem] top-[22rem]"
+                  showIcon
+                />
+              )}
+            </div>
+            <Image
+              src={imageUrl}
+              alt="Generated Image"
+              width={1920}
+              height={1080}
+              className="object-contain w-full max-h-[720px]"
+            />
+          </div>
         ) : (
-          <p className="text-gray-500">No image to display</p>
+          <div>
+            <p className="text-gray-500">No image to display</p>
+            {error && (
+              <Alert
+                message={error}
+                type="error"
+                className="mt-4 absolute right-[28rem] top-[22rem]"
+                showIcon
+              />
+            )}
+          </div>
         )}
-        {/* {error && ( */}
-          {/* // <Alert message={error} type="error" className="mt-4" showIcon /> */}
-        {/* // )} */}
         <Button
           className="absolute right-[1%] bottom-[2%]"
           type="default"
