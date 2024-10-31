@@ -70,7 +70,7 @@ const PromtIt: React.FC = () => {
     }
   };
 
-  const handleModelChange = (value: any) => {
+  const handleModelChange = (value: string) => {
     setModel(value); // Set the selected model
     console.log("Selected Model:", value);
   };
