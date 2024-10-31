@@ -38,7 +38,11 @@ const PromtIt: React.FC = () => {
       const detectedWords = checkForProfanity(inputText); // Get detected words
       if (detectedWords.length > 0) {
         // If there are detected words, show them in the error message
-        setError(`Inappropriate language detected: ${detectedWords.join(", ")}. Please modify your prompt.`);
+        setError(
+          `Inappropriate language detected: ${detectedWords.join(
+            ", "
+          )}. Please modify your prompt.`
+        );
         return;
       }
 
@@ -102,7 +106,7 @@ const PromtIt: React.FC = () => {
                 <Alert
                   message={error}
                   type="error"
-                  className="mt-4 absolute right-[28%] top-[22%]"
+                  className="mt-4 absolute right-[0.2%] md:right-[32%] top-[40%]"
                   showIcon
                 />
               )}
