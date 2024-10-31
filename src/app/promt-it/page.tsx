@@ -102,7 +102,7 @@ const PromtIt: React.FC = () => {
                 <Alert
                   message={error}
                   type="error"
-                  className="mt-4 absolute right-[28rem] top-[22rem]"
+                  className="mt-4 absolute right-[28%] top-[22%]"
                   showIcon
                 />
               )}
@@ -122,7 +122,7 @@ const PromtIt: React.FC = () => {
               <Alert
                 message={error}
                 type="error"
-                className="mt-4 absolute right-[28rem] top-[22rem]"
+                className="mt-4 absolute right-[0.2%] md:right-[32%] top-[40%]"
                 showIcon
               />
             )}
