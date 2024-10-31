@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { Select, Button, Input, Space, Spin, Alert } from "antd";
 import { DownloadOutlined, SendOutlined } from "@ant-design/icons";
+
 const { Option } = Select;
 
 const profanityList = process.env.NEXT_PUBLIC_PROFANITY_LIST?.split(",") || [];
@@ -26,16 +27,18 @@ const PromtIt: React.FC = () => {
   };
 
   const checkForProfanity = (text: string) => {
-    return profanityList.some((word) =>
+    const detectedWords = profanityList.filter((word) =>
       text.toLowerCase().includes(word.trim().toLowerCase())
     );
+    return detectedWords; // Return the detected words instead of a boolean
   };
 
   const handleClick = async () => {
     if (inputText) {
-      if (checkForProfanity(inputText)) {
-        setError("Inappropriate language detected. Please modify your prompt.");
-        // alert("Inappropriate language detected. Please modify your prompt.");
+      const detectedWords = checkForProfanity(inputText); // Get detected words
+      if (detectedWords.length > 0) {
+        // If there are detected words, show them in the error message
+        setError(`Inappropriate language detected: ${detectedWords.join(", ")}. Please modify your prompt.`);
         return;
       }
 
@@ -74,10 +77,11 @@ const PromtIt: React.FC = () => {
     setModel(value); // Set the selected model
     console.log("Selected Model:", value);
   };
+
   return (
     <div className="container mx-auto flex flex-col items-center justify-center z-50 px-[5%]">
       <div className="relative border lg:min-h-[720px] min-h-[420px] max-h-[720px] w-full border-teal-200 rounded-lg mt-20 flex flex-col justify-center items-center overflow-hidden bg-slate-50/10">
-        <div className=" absolute flex items-center gap-2 top-[2%] left-2">
+        <div className="absolute flex items-center gap-2 top-[2%] left-2">
           <span>Model:</span>
           <Select
             defaultValue={model} // Set default value for model selector
